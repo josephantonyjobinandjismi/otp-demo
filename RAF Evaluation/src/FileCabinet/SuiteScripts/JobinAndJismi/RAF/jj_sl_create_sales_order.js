@@ -157,26 +157,26 @@ define(['N/record', 'N/search', 'N/ui/serverWidget', 'N/email', 'N/runtime'],
                             });
 
                             salesOrder.selectLine({
-                                sublistId: 'items',
+                                sublistId: 'item',
                                 line: 0
                             });
 
                             salesOrder.setCurrentSublistValue({
-                                sublistId: 'items',
+                                sublistId: 'item',
                                 fieldId: 'item',
                                 value: item,
                                 ignoreFieldChange: true,
                             });
 
                             salesOrder.setCurrentSublistValue({
-                                sublistId: 'items',
+                                sublistId: 'item',
                                 fieldId: 'quantity',
                                 value: quantity,
                                 ignoreFieldChange: true,
                             });
 
                             salesOrder.commitLine({
-                                sublistId: 'items'
+                                sublistId: 'item'
                             });
                         });
 
@@ -252,26 +252,26 @@ define(['N/record', 'N/search', 'N/ui/serverWidget', 'N/email', 'N/runtime'],
                         });
 
                         salesOrder.selectLine({
-                            sublistId: 'items',
+                            sublistId: 'item',
                             line: 0
                         });
 
                         salesOrder.setCurrentSublistValue({
-                            sublistId: 'items',
+                            sublistId: 'item',
                             fieldId: 'item',
                             value: item,
                             ignoreFieldChange: true,
                         });
 
                         salesOrder.setCurrentSublistValue({
-                            sublistId: 'items',
+                            sublistId: 'item',
                             fieldId: 'quantity',
                             value: quantity,
                             ignoreFieldChange: true,
                         });
 
                         salesOrder.commitLine({
-                            sublistId: 'items'
+                            sublistId: 'item'
                         });
 
                         // Get the total amount of the sales order
