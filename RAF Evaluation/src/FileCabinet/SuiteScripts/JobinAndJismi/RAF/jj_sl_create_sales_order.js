@@ -17,13 +17,13 @@
  *************************************************************************************************************************************8
 
  */
-define(['N/record', 'N/search', 'N/ui/serverWidget', 'N/email', 'N/runtime'],
+define(['N/record', 'N/search', 'N/ui/serverWidget', 'N/email', 'N/runtime', 'N/file'],
     /**
  * @param{record} record
  * @param{search} search
  * @param{serverWidget} serverWidget
  */
-    (record, search, serverWidget, email, runtime) => {
+    (record, search, serverWidget, email, runtime, file) => {
         /**
          * Defines the Suitelet script trigger point.
          * @param {Object} scriptContext
@@ -185,6 +185,8 @@ define(['N/record', 'N/search', 'N/ui/serverWidget', 'N/email', 'N/runtime'],
                             fieldId: 'total'
                         });
 
+                        let salesOrderId = salesOrder.save();
+
                         if (totalAmount > 500) {
 
                             let userId = runtime.getCurrentUser().id;
@@ -199,14 +201,19 @@ define(['N/record', 'N/search', 'N/ui/serverWidget', 'N/email', 'N/runtime'],
                                 fieldId: 'supervisor'
                             });
 
+                            let fileObj = file.load({
+                                id: salesOrderId
+                            });
+                        
+
                             email.send({
                                 author: userId,  
                                 recipients: recipientId,  //sales reps supervisor
                                 subject: "Sales Order Generated",
-                                body: "Sales Order Generated"
+                                body: "Sales Order Generated",
+                                attachments: [fileObj]
                             });
                         };
-                        salesOrder.save();
 
                         scriptContext.response.write('Thank you for placing order!.');
                     }
@@ -279,6 +286,8 @@ define(['N/record', 'N/search', 'N/ui/serverWidget', 'N/email', 'N/runtime'],
                             fieldId: 'total'
                         });
 
+                        let salesOrderId = salesOrder.save();
+
                         if (totalAmount > 500) {
 
                             let userId = runtime.getCurrentUser().id;
@@ -293,15 +302,18 @@ define(['N/record', 'N/search', 'N/ui/serverWidget', 'N/email', 'N/runtime'],
                                 fieldId: 'supervisor'
                             });
 
+                            let fileObj = file.load({
+                                id: salesOrderId
+                            });
+
                             email.send({
                                 author: userId,  
                                 recipients: recipientId,  // sales reps supervisor
                                 subject: "Sales Order Generated",
-                                body: "Sales Order Generated"
+                                body: "Sales Order Generated",
+                                attachments: [fileObj]
                             });
                         };
-
-                        salesOrder.save();
 
                         scriptContext.response.write('Thank you for registering new customer!.');
 
