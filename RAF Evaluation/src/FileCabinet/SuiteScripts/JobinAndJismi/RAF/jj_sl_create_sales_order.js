@@ -134,7 +134,7 @@ define(['N/record', 'N/search', 'N/ui/serverWidget', 'N/email', 'N/runtime', 'N/
 
                     let customerResult = customerSearch.run().getRange({
                         start: 0,
-                        end: 1000
+                        end: 1
                     });
 
                     if (customerResult.length > 0) {
