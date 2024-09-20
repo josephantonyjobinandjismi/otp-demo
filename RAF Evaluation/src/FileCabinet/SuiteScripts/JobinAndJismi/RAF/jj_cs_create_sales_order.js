@@ -2,6 +2,20 @@
  * @NApiVersion 2.x
  * @NScriptType ClientScript
  * @NModuleScope SameAccount
+ * *************************************************************************************************************************************
+ * Client Name: Nil
+ * 
+ * Title: Create Sales Order
+ * 
+ * Author: Jobin And Jismi IT Services LLP
+ * 
+ * Date Created: 2024-09-20
+ *
+ * Script Description:
+ * Collect sales order details
+ 
+ * Revision History: 1.0
+ *************************************************************************************************************************************8
  */
 define(['N/format', 'N/record', 'N/search'],
     /**

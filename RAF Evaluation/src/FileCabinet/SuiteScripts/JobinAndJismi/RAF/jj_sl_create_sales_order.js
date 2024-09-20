@@ -1,6 +1,21 @@
 /**
  * @NApiVersion 2.1
  * @NScriptType Suitelet
+*************************************************************************************************************************************
+ * Client Name: Nil
+ * 
+ * Title: Create Sales Order
+ * 
+ * Author: Jobin And Jismi IT Services LLP
+ * 
+ * Date Created: 2024-09-20
+ *
+ * Script Description:
+ * Create a new form to collect customer details. This form should also have an item sublist to create a sales order. When user clicks submit a sales order record is created.
+ 
+ * Revision History: 1.0
+ *************************************************************************************************************************************8
+
  */
 define(['N/record', 'N/search', 'N/ui/serverWidget', 'N/email', 'N/runtime'],
     /**
