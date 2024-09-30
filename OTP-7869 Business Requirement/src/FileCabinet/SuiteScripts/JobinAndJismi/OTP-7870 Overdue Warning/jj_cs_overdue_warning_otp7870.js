@@ -47,23 +47,29 @@ define(['N/record'],
          * @param {Object} scriptContext
          */
         function checkCustomerOverdue(scriptContext) {
-            // Load the customer record
-            let customer = record.load({
-                type: record.Type.CUSTOMER,
-                id: scriptContext.currentRecord.getValue({
-                    fieldId: 'entity'
-                }),
-                isDynamic: true
-            })
 
-            //Get no of overdue days
-            let daysOverdue = Number(customer.getValue({
-                fieldId: 'daysoverdue'
-            }));
+            try {
+                // Load the customer record
+                let customer = record.load({
+                    type: record.Type.CUSTOMER,
+                    id: scriptContext.currentRecord.getValue({
+                        fieldId: 'entity'
+                    }),
+                    isDynamic: true
+                })
 
-            //Check whether the overdue days are greater than zero
-            if (daysOverdue > 0) {
-                overdueCustomer = true;
+                //Get no of overdue days
+                let daysOverdue = Number(customer.getValue({
+                    fieldId: 'daysoverdue'
+                }));
+
+                //Check whether the overdue days are greater than zero
+                if (daysOverdue > 0) {
+                    overdueCustomer = true;
+                }
+            }
+            catch (e) {
+                console.log("Error: ", e);
             }
         }
 
@@ -111,15 +117,7 @@ define(['N/record'],
         }
 
         return {
-            // pageInit: pageInit,
             fieldChanged: fieldChanged,
-            // postSourcing: postSourcing,
-            // sublistChanged: sublistChanged,
-            // lineInit: lineInit,
-            // validateField: validateField,
-            // validateLine: validateLine,
-            // validateInsert: validateInsert,
-            // validateDelete: validateDelete,
             saveRecord: saveRecord
         };
 
