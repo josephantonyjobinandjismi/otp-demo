@@ -29,19 +29,6 @@ define(['N/record'],
         let overdueCustomer = false;
 
         /**
-         * Function to be executed when field is changed.
-         *
-         * @param {Object} scriptContext
-         * @param {Record} scriptContext.currentRecord - Current form record
-         * @param {string} scriptContext.sublistId - Sublist name
-         * @param {string} scriptContext.fieldId - Field name
-         * @param {number} scriptContext.lineNum - Line number. Will be undefined if not a sublist or matrix field
-         * @param {number} scriptContext.columnNum - Line number. Will be undefined if not a matrix field
-         *
-         * @since 2015.2
-         */
-
-        /**
          *Function to be executed when customer field is changed
          *
          * @param {Object} scriptContext
@@ -73,20 +60,6 @@ define(['N/record'],
             }
         }
 
-        function fieldChanged(scriptContext) {
-            try {
-                const currentField = scriptContext.fieldId;
-
-                //Executed when customer field is changed
-                if (currentField === 'entity') {
-                    checkCustomerOverdue(scriptContext);
-                }
-
-            } catch (e) {
-                console.log("Error: ", e);
-            }
-        }
-
         /**
          * Validation function to be executed when record is saved.
          *
@@ -99,7 +72,7 @@ define(['N/record'],
 
         function saveRecord(scriptContext) {
             try {
-
+                checkCustomerOverdue(scriptContext);
                 if (overdueCustomer) {
                     // Display Confirm Box
                     if (window.confirm("You are creating sales order for an overdue customer!")) {
@@ -117,7 +90,6 @@ define(['N/record'],
         }
 
         return {
-            fieldChanged: fieldChanged,
             saveRecord: saveRecord
         };
 
