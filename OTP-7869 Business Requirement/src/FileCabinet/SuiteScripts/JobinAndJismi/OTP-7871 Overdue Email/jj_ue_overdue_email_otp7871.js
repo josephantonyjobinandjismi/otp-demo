@@ -31,7 +31,7 @@ define(['N/email', 'N/record', 'N/log'],
         let overdueCustomer = false;
 
         /**
-         *Function to be executed when customer field is changed
+         *Function to check whether a customer is overdue or not
          *
          * @param {Object} scriptContext
          */
@@ -61,9 +61,9 @@ define(['N/email', 'N/record', 'N/log'],
                 log.debug("Error: ", e);
             }
         }
-        
+
         /**
-         *
+         *Function to send email to sales rep's supervisor
          *
          * @param {*} scriptContext
          */
