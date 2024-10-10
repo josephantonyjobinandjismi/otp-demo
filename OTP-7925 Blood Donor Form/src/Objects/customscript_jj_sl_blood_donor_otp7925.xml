@@ -1,7 +1,7 @@
 <suitelet scriptid="customscript_jj_sl_blood_donor_otp7925">
   <description></description>
   <isinactive>F</isinactive>
-  <name>JJ SL blood donor form otp-7925</name>
+  <name>JJ SL blood donor form otp7925</name>
   <notifyadmins>F</notifyadmins>
   <notifyemails></notifyemails>
   <notifyowner>T</notifyowner>
@@ -19,7 +19,7 @@
       <loglevel>DEBUG</loglevel>
       <runasrole></runasrole>
       <status>TESTING</status>
-      <title>JJ SL blood donor form otp-7925</title>
+      <title>JJ SL blood donor form otp7925</title>
     </scriptdeployment>
   </scriptdeployments>
 </suitelet>
