@@ -19,13 +19,13 @@
  * 
  * 
  **********************************************************************************************/
-define(['N/record', 'N/ui/serverWidget', 'N/format'],
+define(['N/record', 'N/ui/serverWidget', 'N/format', 'N/search'],
     /**
  * @param{record} record
  * @param{serverWidget} serverWidget
  * @param{format} format
  */
-    (record, serverWidget, format) => {
+    (record, serverWidget, format, search) => {
         /**
          *Create a blood donor form to fetch details of the blood donor.
          *
@@ -55,7 +55,7 @@ define(['N/record', 'N/ui/serverWidget', 'N/format'],
                     type: serverWidget.FieldType.SELECT,
                     label: 'Gender',
                     source: 'customlist_jj_gender'
-                });
+                }).isMandatory = true;
 
                 form.addField({
                     id: 'custpage_jj_phone_number',
@@ -109,7 +109,41 @@ define(['N/record', 'N/ui/serverWidget', 'N/format'],
                     scriptContext.response.write("The date cannot be a future date!!");
                     throw "dateError";
                 }
-                
+
+                if (phoneNumber < 1000000 || phoneNumber > 9999999999) {
+                    scriptContext.response.write("Invalid Phone Number!!");
+                    throw "Phone Number Error";
+                }
+
+                //Duplicate record detection
+
+                let bloodDonorSearch = search.create({
+                    type: 'customrecord_jj_blood_donor_otp7925',
+                    filters: [
+                        ['custrecord_jj_first_name', 'is', firstName],
+                        'AND',
+                        ['custrecord_jj_last_name', 'is', lastName],
+                        'AND',
+                        ['custrecord_jj_phone_number', 'is', phoneNumber],
+                        'AND',
+                        ['custrecord_jj_gender', 'anyof', gender],
+                        'AND',
+                        ['custrecord_jj_blood_group', 'anyof', bloodGroup],
+                        'AND',
+                        ['custrecord_jj_last_donation_date', 'on', lastDonationDate]
+                    ]
+                });
+
+                let result = bloodDonorSearch.run().getRange({
+                    start: 0,
+                    end: 1
+                });
+
+                if (result.length > 0) {
+                    scriptContext.response.write("Creation of duplicate record is not allowed!!");
+                    throw "Duplicate Record Error";
+                }
+
                 var donorRecord = record.create({
                     type: 'customrecord_jj_blood_donor_otp7925' // custom record type
                 });
@@ -122,7 +156,10 @@ define(['N/record', 'N/ui/serverWidget', 'N/format'],
                 donorRecord.setValue({ fieldId: 'custrecord_jj_last_donation_date', value: formattedDate });
 
                 // Save the record
-                donorRecord.save();
+                donorRecord.save({
+                    enableSourcing: true,
+                    ignoreMandatoryFields: false
+                });
 
                 // Display a confirmation message
                 scriptContext.response.write("Blood Donor Details successfully submitted.");
