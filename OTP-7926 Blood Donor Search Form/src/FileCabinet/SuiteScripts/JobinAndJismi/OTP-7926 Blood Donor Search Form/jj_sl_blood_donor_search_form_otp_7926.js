@@ -22,24 +22,21 @@
  * 
  * 
  **********************************************************************************************/
-define(['N/format', 'N/record', 'N/search', 'N/ui/serverWidget'],
+define(['N/ui/serverWidget'],
     /**
- * @param{format} format
- * @param{record} record
- * @param{search} search
  * @param{serverWidget} serverWidget
  */
-    (format, record, search, serverWidget) => {
+    (serverWidget) => {
 
         /**
          *Function to create blood donor search form
          *
          * @param {*} scriptContext
          */
-        function createBloodDonorFilterForm(scriptContext) {
+         function createBloodDonorFilterForm(scriptContext) {
             try {
                 // Create the form
-                var form = serverWidget.createForm({
+                let form = serverWidget.createForm({
                     title: 'Search Eligible Blood Donors'
                 });
 
@@ -92,12 +89,11 @@ define(['N/format', 'N/record', 'N/search', 'N/ui/serverWidget'],
                     label: 'Phone Number'
                 });
 
-                form.clientScriptModulePath = "SuiteScripts/JobinAndJismi/OTP-7926 Blood Donor Filter Form/jj_cs_blood_donor_filter_form_otp_7926.js"
+                form.clientScriptModulePath = "SuiteScripts/JobinAndJismi/OTP-7926 Blood Donor Search Form/jj_cs_blood_donor_search_form_otp_7926.js";
 
                 // Display the form to the user
                 scriptContext.response.writePage(form);
             }
-
             catch (e) {
                 log.error("Error: ", e);
             }
@@ -113,7 +109,6 @@ define(['N/format', 'N/record', 'N/search', 'N/ui/serverWidget'],
         const onRequest = (scriptContext) => {
             try {
                 if (scriptContext.request.method === 'GET') {
-                    // Create the form
                     createBloodDonorFilterForm(scriptContext);
                 }
             }
@@ -123,6 +118,6 @@ define(['N/format', 'N/record', 'N/search', 'N/ui/serverWidget'],
             }
         }
 
-        return { onRequest }
+        return {onRequest}
 
     });

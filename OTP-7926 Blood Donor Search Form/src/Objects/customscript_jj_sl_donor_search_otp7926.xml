@@ -1,14 +1,14 @@
-<suitelet scriptid="customscript_jj_sl_donor_filter_otp7926">
+<suitelet scriptid="customscript_jj_sl_donor_search_otp7926">
   <description></description>
   <isinactive>F</isinactive>
-  <name>JJ SL blood donor filter form otp7926</name>
+  <name>JJ SL blood donor search form otp7926</name>
   <notifyadmins>F</notifyadmins>
   <notifyemails></notifyemails>
   <notifyowner>T</notifyowner>
   <notifyuser>F</notifyuser>
-  <scriptfile>[/SuiteScripts/JobinAndJismi/OTP-7926 Blood Donor Filter Form/jj_sl_blood_donor_filter_form_otp_7926.js]</scriptfile>
+  <scriptfile>[/SuiteScripts/JobinAndJismi/OTP-7926 Blood Donor Search Form/jj_sl_blood_donor_search_form_otp_7926.js]</scriptfile>
   <scriptdeployments>
-    <scriptdeployment scriptid="customdeploy_jj_sl_donor_filter_otp7926">
+    <scriptdeployment scriptid="customdeploy_jj_sl_donor_search_otp7926">
       <allemployees>F</allemployees>
       <allpartners>F</allpartners>
       <allroles>F</allroles>
@@ -19,7 +19,7 @@
       <loglevel>DEBUG</loglevel>
       <runasrole></runasrole>
       <status>TESTING</status>
-      <title>JJ SL blood donor filter form otp7926</title>
+      <title>JJ SL Blood Donor Search Form OTP 7926</title>
     </scriptdeployment>
   </scriptdeployments>
 </suitelet>
